@@ -2,7 +2,7 @@
 
 > Divide an area by the percentage.
 
-[![Build Status](https://travis-ci.org/tcharts/area-divide.svg?branch=master)](https://travis-ci.org/tcharts/area-divide) [![Coverage Status](https://coveralls.io/repos/github/tcharts/area-divide/badge.svg)](https://coveralls.io/github/tcharts/area-divide)
+[![Build Status](https://travis-ci.org/TCharts/area-divide.svg?branch=master)](https://travis-ci.org/TCharts/area-divide) [![Coverage Status](https://coveralls.io/repos/github/TCharts/area-divide/badge.svg)](https://coveralls.io/github/TCharts/area-divide)
 
 
 ## Usage

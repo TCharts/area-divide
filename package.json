@@ -9,18 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tcharts/area-divide.git"
+    "url": "git+https://github.com/TCharts/area-divide.git"
   },
   "keywords": [
     "area-divide",
     "divide"
   ],
-  "author": "tcharts",
+  "author": "TCharts",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tcharts/area-divide/issues"
+    "url": "https://github.com/TCharts/area-divide/issues"
   },
-  "homepage": "https://github.com/tcharts/area-divide#readme",
+  "homepage": "https://github.com/TCharts/area-divide#readme",
   "devDependencies": {
     "coveralls": "^2.11.6",
     "expect": "^1.14.0",
