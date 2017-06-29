@@ -3,22 +3,14 @@
  * Contract: i@hust.cc
  */
 
-
+var round = require('fixed-round');
 /**
  * 通过 data 数据划分 width，height 的数组
  * 最后返回一个瓜分的数组
  * @param width
  * @param height
  * @param data
- [
-   {value:335, name:'直接访问'},
-   {value:310, name:'邮件营销'},
-   {value:274, name:'联盟广告'},
-   {value:235, name:'视频广告'},
-   {value:400, name:'搜索引擎'},
- ]
- 或者
- [335, 310, 274, 235, 400]
+ [0.4, 0.3, 0.3]
  *
  * @returns {Array}
  * @constructor
@@ -33,24 +25,56 @@
  *  +-------------------+------------+
  *
  */
-function AreaDivide(width, height, data) {
-  // TODO
-  return [{
-    x1: 0,
-    y1: 0,
-    x2: 33,
-    y2: 33,
-  }, {
-    x1: 33,
-    y1: 0,
-    x2: 100,
-    y2: 25,
-  }, {
-    x1: 33,
-    y1: 25,
-    x2: 100,
-    y2: 50,
-  }];
+function areaDivide(width, height, data, fixed) {
+  data.sort(function(x, y) {
+    return y - x; // 按照 percent 降序
+  });
+
+  var area = [width, height];
+  var divides = [];
+  var len = data.length - 1; // 最后一个不需要遍历
+
+  var v, p;
+  var x = 0,
+    y = 0; // 原点
+  var t = 1;
+
+  for (var i = 0; i < len; i ++) {
+    v = data[i];
+
+    if (i % 2 === 0) {
+      p = {
+        x1: x,
+        y1: y,
+        x2: x + round(area[0] * v / t, fixed),
+        y2: height,
+      };
+
+      x = p.x2;
+      area = [area[0] - x, area[1]]
+    } else {
+      p = {
+        x1: x,
+        y1: y,
+        x2: width,
+        y2: y + round(area[1] * v / t, fixed),
+      };
+
+      y = p.y2;
+      area = [area[0], area[1] - y]
+    }
+    divides.push(p);
+
+    t -= v;
+  }
+  // 最后一个元素就是剩下所有的面积
+  divides.push({
+    x1: x,
+    y1: y,
+    x2: width,
+    y2: height,
+  });
+  return divides;
 }
 
-module.exports = AreaDivide;
+module.exports = areaDivide;
